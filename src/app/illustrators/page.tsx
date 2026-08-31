@@ -27,7 +27,7 @@ export default function IllustratorsPage() {
               <div className="flex flex-1 flex-col border-t border-black/10 p-6">
                 <div className="text-[8px] tracking-[.16em] text-black/55">{a.style} · {a.taste.toUpperCase()} · 4.2% ABV</div>
                 <h3 className="mt-2 font-serif text-2xl tracking-[-.02em]">{a.name}</h3>
-                <p className="mt-2 flex-1 text-xs leading-relaxed text-black/60">“{a.quote}”</p>
+                <p className="mt-2 flex-1 font-serif text-[13px] italic leading-relaxed text-black/65">“{a.quote}”</p>
                 <Link href="/journals/meet-the-artists" className="u-line mx-auto mt-4 pb-0.5 text-[10px] tracking-[.14em]">READ THE FEATURE</Link>
               </div>
             </article>

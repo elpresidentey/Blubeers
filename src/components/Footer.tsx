@@ -16,7 +16,7 @@ export default function Footer() {
             <ul className="space-y-1 opacity-70">
               <li><Link href="/journals" className="hover:opacity-100">Our Story</Link></li>
               <li><Link href="/journals/cold-fermented-light-lager" className="hover:opacity-100">Brewing</Link></li>
-              <li><a href="mailto:hello@blu.beer?subject=Sustainability" className="hover:opacity-100">Sustainability</a></li>
+              <li><Link href="/help#sustainability" className="hover:opacity-100">Sustainability</Link></li>
               <li><Link href="/illustrators" className="hover:opacity-100">Artists</Link></li>
             </ul>
           </div>
@@ -25,15 +25,15 @@ export default function Footer() {
             <ul className="space-y-1 opacity-70">
               <li><Link href="/shop" className="hover:opacity-100">All Lagers</Link></li>
               <li><Link href="/shop#mix-builder" className="hover:opacity-100">Mix Packs</Link></li>
-              <li><a href="mailto:hello@blu.beer?subject=Gift%20cards" className="hover:opacity-100">Gift Cards</a></li>
+              <li><Link href="/help#gift-cards" className="hover:opacity-100">Gift Cards</Link></li>
             </ul>
           </div>
           <div>
             <div className="font-bold tracking-[0.12em] mb-3">HELP</div>
             <ul className="space-y-1 opacity-70">
-              <li><a href="mailto:hello@blu.beer" className="hover:opacity-100">Contact</a></li>
-              <li><a href="mailto:hello@blu.beer?subject=Delivery" className="hover:opacity-100">Delivery</a></li>
-              <li><a href="mailto:hello@blu.beer?subject=Returns" className="hover:opacity-100">Returns</a></li>
+              <li><Link href="/help#contact" className="hover:opacity-100">Contact</Link></li>
+              <li><Link href="/help#delivery" className="hover:opacity-100">Delivery</Link></li>
+              <li><Link href="/help#returns" className="hover:opacity-100">Returns</Link></li>
             </ul>
           </div>
           <div>

@@ -40,7 +40,7 @@ export default function IllustratorsPage() {
         <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-black/60">We commission a new artist every season — the brief is always: crisp, cold-fermented, light lager.</p>
         <div className="mt-7 flex justify-center gap-3">
           <Link href="/journals" className="border border-black px-7 py-3 text-[10px] tracking-[.16em] transition-colors hover:bg-black hover:text-white">JOURNAL</Link>
-          <a href="mailto:hello@blu.beer" className="border border-black bg-black px-7 py-3 text-[10px] tracking-[.16em] text-white transition-colors hover:bg-transparent hover:text-black">CONTACT</a>
+          <Link href="/help#contact" className="border border-black bg-black px-7 py-3 text-[10px] tracking-[.16em] text-white transition-colors hover:bg-transparent hover:text-black">CONTACT</Link>
         </div>
       </section>
     </main>

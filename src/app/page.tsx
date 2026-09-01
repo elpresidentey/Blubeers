@@ -41,7 +41,7 @@ export default function Home() {
 
       <section id="lager-series" className="mx-auto max-w-[1280px] px-5 py-16 sm:px-6 md:px-8 md:py-24">
         <div className="grid gap-8 border-b border-black/10 pb-9 md:grid-cols-[1.1fr_.7fr] md:items-end md:gap-12"><div className="text-left"><p className="text-left text-[9px] tracking-[.22em] text-black/55">THE LAGER SERIES</p><h2 className="mt-3 max-w-xl text-left font-serif text-4xl leading-[.9] tracking-[-.03em] md:text-6xl">Four flavours.<br /><span className="font-light italic">One clear idea.</span></h2></div><p className="max-w-[320px] text-left text-xs leading-relaxed text-black/60 md:ml-auto md:text-left">Cold fermented, lightly hopped and built around bright, natural flavour.</p></div>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">{products.slice(0, 4).map((product, index) => {
+        <div className="grid auto-rows-fr grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">{products.slice(0, 4).map((product, index) => {
           const bg: Record<string, string> = {
             lime: "radial-gradient(120% 120% at 30% 20%, #f7fbd1 0%, #eef2d8 55%, #e8e9d6 100%)",
             peach: "radial-gradient(120% 120% at 30% 20%, #fff6e8 0%, #fae1d0 55%, #f5ddd0 100%)",
@@ -52,7 +52,7 @@ export default function Home() {
           return (
             <article
               key={product.id}
-              className={`group relative flex flex-col overflow-hidden rounded-[22px] border bg-white transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_rgba(0,0,0,0.10)] ${isBlood ? "border-[#ffb79a]/50 shadow-[0_8px_24px_rgba(255,154,98,0.18)]" : "border-black/10"}`}
+              className={`group relative flex h-full flex-col overflow-hidden rounded-[22px] border bg-white transition-all duration-300 hover:z-10 hover:shadow-[0_18px_40px_rgba(0,0,0,0.10)] ${isBlood ? "border-black/10" : "border-black/10"}`}
             >
               <Link href={`/shop/${product.id}`} className="absolute inset-0 z-10" aria-label={`View ${product.name} — ${product.flavour}`} />
               <div className="relative aspect-[4/3.3] overflow-hidden p-6 sm:p-7" style={{ background: bg[product.id] || "#f5f0e8" }}>

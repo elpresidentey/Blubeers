@@ -41,7 +41,61 @@ export default function Home() {
 
       <section id="lager-series" className="mx-auto max-w-[1280px] px-5 py-16 sm:px-6 md:px-8 md:py-24">
         <div className="grid gap-8 border-b border-black/10 pb-9 md:grid-cols-[1.1fr_.7fr] md:items-end md:gap-12"><div className="text-left"><p className="text-left text-[9px] tracking-[.22em] text-black/55">THE LAGER SERIES</p><h2 className="mt-3 max-w-xl text-left font-serif text-4xl leading-[.9] tracking-[-.03em] md:text-6xl">Four flavours.<br /><span className="font-light italic">One clear idea.</span></h2></div><p className="max-w-[320px] text-left text-xs leading-relaxed text-black/60 md:ml-auto md:text-left">Cold fermented, lightly hopped and built around bright, natural flavour.</p></div>
-        <div className="grid grid-cols-2 md:grid-cols-4">{products.slice(0, 4).map((product, index) => <article key={product.id} className="group relative flex min-h-[340px] flex-col justify-between border-b border-black/10 px-3 py-6 transition-colors duration-500 hover:bg-[#f0eadf]/60 sm:px-5 md:min-h-[450px] md:border-r md:px-7 md:last:border-r-0"><Link href={`/shop/${product.id}`} className="absolute inset-0 z-10" aria-label={`View ${product.name} — ${product.flavour}: ${product.description}`} /><span className="text-[9px] tracking-[.15em] text-black/45 transition-colors duration-500 group-hover:text-black/70">0{index + 1}</span><Image src={product.src} alt={`${product.name} — ${product.flavour}. ${product.description}`} width={300} height={420} className="can-shadow absolute left-1/2 top-1/2 h-[54%] w-auto -translate-x-1/2 -translate-y-1/2 object-contain transition-transform duration-700 ease-out group-hover:scale-[1.05]" /><div className="relative z-20 mt-auto"><h3 className="flex items-center gap-1.5 text-[11px] font-medium tracking-wide"><span className="h-1.5 w-1.5 shrink-0 rounded-full transition-transform duration-300 group-hover:scale-125" style={{ backgroundColor: product.shade }} />{product.name}</h3><p className="mt-1 text-[9px] text-black/55">{product.note} · {product.flavour}</p><p className="mt-1 hidden text-[9px] leading-relaxed text-black/60 md:line-clamp-2">{product.description}</p><div className="mt-4 flex items-center justify-between gap-2"><span className="text-[10px]">£{product.price}.00</span><button onClick={() => addProduct(product.id)} className="u-line relative z-30 pb-0.5 text-[9px] tracking-[.13em]" aria-label={`Add ${product.name} to cart`}>{added === product.id ? "ADDED ✓" : "ADD +"}</button></div></div></article>)}</div>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">{products.slice(0, 4).map((product, index) => {
+          const bg: Record<string, string> = {
+            lime: "radial-gradient(120% 120% at 30% 20%, #f7fbd1 0%, #eef2d8 55%, #e8e9d6 100%)",
+            peach: "radial-gradient(120% 120% at 30% 20%, #fff6e8 0%, #fae1d0 55%, #f5ddd0 100%)",
+            "blood-orange": "radial-gradient(120% 120% at 30% 20%, #fff0e6 0%, #ffd6c2 45%, #ffb79a 100%)",
+            agave: "radial-gradient(120% 120% at 30% 20%, #f0f7f0 0%, #dce9dd 55%, #d9e8dd 100%)",
+          };
+          const isBlood = product.id === "blood-orange";
+          return (
+            <article
+              key={product.id}
+              className={`group relative flex flex-col overflow-hidden rounded-[22px] border bg-white transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_rgba(0,0,0,0.10)] ${isBlood ? "border-[#ffb79a]/50 shadow-[0_8px_24px_rgba(255,154,98,0.18)]" : "border-black/10"}`}
+            >
+              <Link href={`/shop/${product.id}`} className="absolute inset-0 z-10" aria-label={`View ${product.name} — ${product.flavour}`} />
+              <div className="relative aspect-[4/3.3] overflow-hidden p-6 sm:p-7" style={{ background: bg[product.id] || "#f5f0e8" }}>
+                <div className="absolute left-4 top-4 flex items-center gap-2">
+                  <span className="rounded-full bg-white/90 px-2.5 py-1 text-[8px] tracking-[0.14em] text-black/70 backdrop-blur border border-black/5">0{index + 1} • {product.abv}</span>
+                  {isBlood && <span className="rounded-full bg-[#ff4d1a] px-2.5 py-1 text-[8px] font-medium tracking-[0.14em] text-white">BOLD</span>}
+                </div>
+                <Image
+                  src={product.src}
+                  alt={`${product.name} — ${product.flavour}. ${product.description}`}
+                  width={300}
+                  height={420}
+                  className="can-shadow absolute left-1/2 top-1/2 h-[62%] w-auto -translate-x-1/2 -translate-y-[44%] object-contain transition-transform duration-700 ease-out group-hover:scale-[1.06] group-hover:-rotate-[1deg]"
+                />
+                <span className="absolute bottom-4 left-4 rounded-full bg-black px-2.5 py-1 text-[8px] tracking-[0.12em] text-white/90">{product.kcal}</span>
+                <span className="absolute bottom-4 right-4 hidden h-7 w-7 place-items-center rounded-full bg-white/90 text-black backdrop-blur border border-black/10 group-hover:grid">↗</span>
+              </div>
+              <div className="relative z-20 flex flex-1 flex-col p-5">
+                <h3 className="font-serif text-[15px] leading-tight tracking-[-0.01em]">{product.name}</h3>
+                <p className="mt-1 font-serif text-[11px] italic text-black/55">{product.flavour}</p>
+                <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-black/60">{product.description}</p>
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {product.tasting.slice(0, 3).map((t) => (
+                    <span key={t} className="rounded-full border border-black/10 bg-[#FCFAF6] px-2 py-1 text-[8px] tracking-wide text-black/60">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-5 flex items-center justify-between border-t border-black/5 pt-4">
+                  <span className="text-[12px] font-medium">£{product.price}.00</span>
+                  <button
+                    onClick={() => addProduct(product.id)}
+                    className={`relative z-30 rounded-full px-3.5 py-1.5 text-[9px] tracking-[0.14em] transition-colors ${added === product.id ? "bg-[#1a3a32] text-white" : "bg-black text-white hover:bg-white hover:text-black hover:outline hover:outline-1 hover:outline-black"}`}
+                    aria-label={`Add ${product.name} to cart`}
+                  >
+                    {added === product.id ? "ADDED ✓" : "ADD +"}
+                  </button>
+                </div>
+                <p className="mt-2 text-right text-[8px] tracking-wide text-black/40">Click card for flavour & inside</p>
+              </div>
+            </article>
+          );
+        })}</div>
         <div className="mt-8 flex justify-center"><Link href="/shop" className="border border-black px-7 py-3 text-[10px] tracking-[.16em] transition-colors hover:bg-black hover:text-white">SHOP ALL LAGERS</Link></div>
       </section>
 

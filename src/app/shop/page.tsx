@@ -35,27 +35,25 @@ export default function ShopPage() {
         <div className="mb-6 flex items-center justify-between border-b border-black/10 pb-4 text-[9px] tracking-[.15em]"><span>05 PRODUCTS • TAP ANY CARD FOR FLAVOUR & INSIDE</span><span>FREE DELIVERY OVER £50</span></div>
         <div className="grid auto-rows-fr grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
           {products.map((product, idx) => {
-            const bg: Record<string, string> = {
-              lime: "radial-gradient(120% 120% at 30% 20%, #f7fbd1 0%, #eef2d8 55%, #e8e9d6 100%)",
-              peach: "radial-gradient(120% 120% at 30% 20%, #fff6e8 0%, #fae1d0 55%, #f5ddd0 100%)",
-              "blood-orange": "radial-gradient(120% 120% at 30% 20%, #fff0e6 0%, #ffd6c2 45%, #ffb79a 100%)",
-              agave: "radial-gradient(120% 120% at 30% 20%, #f0f7f0 0%, #dce9dd 55%, #d9e8dd 100%)",
-              "mix-pack": "radial-gradient(120% 120% at 30% 20%, #eef6fb 0%, #dbeaf1 55%, #d6e4f0 100%)",
-            };
-            const isBlood = product.id === "blood-orange";
             const isLastSingle = idx === products.length - 1 && products.length % 4 === 1;
             return (
               <article
                 key={product.id}
-                className={`group relative flex h-full flex-col overflow-hidden rounded-[22px] border bg-white transition-all duration-300 hover:z-10 hover:shadow-[0_18px_40px_rgba(0,0,0,0.10)] border-black/10 ${isLastSingle ? "lg:col-start-2" : ""}`}
+                className={`group relative flex h-full flex-col overflow-hidden rounded-[22px] border border-black/10 bg-white transition-all duration-300 hover:z-10 hover:shadow-[0_18px_40px_rgba(0,0,0,0.10)] ${isLastSingle ? "lg:col-start-2" : ""}`}
               >
                 <Link href={`/shop/${product.id}`} className="absolute inset-0 z-10" aria-label={`View ${product.name} — ${product.flavour}`} />
-                <div className="relative aspect-[4/3.4] overflow-hidden p-6" style={{ background: bg[product.id] || "#f5f0e8" }}>
-                  <span className="absolute left-4 top-4 rounded-full bg-white/90 px-2.5 py-1 text-[8px] tracking-[0.14em] text-black/70 backdrop-blur border border-black/5">{product.abv} • {product.kcal.split(" ")[0]} {product.kcal.split(" ")[1]}</span>
-                  {isBlood && <span className="absolute right-4 top-4 rounded-full bg-[#ff4d1a] px-2.5 py-1 text-[8px] font-medium tracking-[0.14em] text-white">BOLD</span>}
-                  <Image src={product.src} alt={`${product.name} — ${product.flavour}`} width={280} height={390} className="can-shadow absolute left-1/2 top-1/2 h-[64%] w-auto -translate-x-1/2 -translate-y-[46%] object-contain transition-transform duration-700 group-hover:scale-[1.05] group-hover:-rotate-[1deg]" />
+                <div className="relative aspect-[4/3.4] overflow-hidden bg-[#f5f0e8] p-6">
+                  <span className="absolute left-4 top-4 rounded-full bg-white px-2.5 py-1 text-[8px] tracking-[0.14em] text-black/70 border border-black/5">{product.abv} • {product.kcal.split(" ")[0]} {product.kcal.split(" ")[1]}</span>
+                  <Image
+                    src={product.src}
+                    alt={`${product.name} — ${product.flavour}`}
+                    width={280}
+                    height={390}
+                    sizes="(min-width:1280px) 240px, (min-width:768px) 33vw, 50vw"
+                    className="can-shadow absolute left-1/2 top-1/2 h-[64%] w-auto -translate-x-1/2 -translate-y-[46%] object-contain transition-transform duration-700 group-hover:scale-[1.05]"
+                  />
                   <span className="absolute bottom-4 left-4 rounded-full bg-black px-2.5 py-1 text-[8px] tracking-[0.12em] text-white/90">£{product.price}.00</span>
-                  <span className="absolute bottom-4 right-4 hidden h-7 w-7 place-items-center rounded-full bg-white/90 text-black backdrop-blur border border-black/10 group-hover:grid">↗</span>
+                  <span className="absolute bottom-4 right-4 hidden h-7 w-7 place-items-center rounded-full bg-white text-black border border-black/10 group-hover:grid">↗</span>
                 </div>
                 <div className="flex flex-1 flex-col p-5">
                   <h2 className="font-serif text-[14px] leading-tight tracking-[-0.01em]">{product.name}</h2>

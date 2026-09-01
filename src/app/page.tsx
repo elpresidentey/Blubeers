@@ -42,30 +42,23 @@ export default function Home() {
       <section id="lager-series" className="mx-auto max-w-[1280px] px-5 py-16 sm:px-6 md:px-8 md:py-24">
         <div className="grid gap-8 border-b border-black/10 pb-9 md:grid-cols-[1.1fr_.7fr] md:items-end md:gap-12"><div className="text-left"><p className="text-left text-[9px] tracking-[.22em] text-black/55">THE LAGER SERIES</p><h2 className="mt-3 max-w-xl text-left font-serif text-4xl leading-[.9] tracking-[-.03em] md:text-6xl">Four flavours.<br /><span className="font-light italic">One clear idea.</span></h2></div><p className="max-w-[320px] text-left text-xs leading-relaxed text-black/60 md:ml-auto md:text-left">Cold fermented, lightly hopped and built around bright, natural flavour.</p></div>
         <div className="grid auto-rows-fr grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">{products.slice(0, 4).map((product, index) => {
-          const bg: Record<string, string> = {
-            lime: "radial-gradient(120% 120% at 30% 20%, #f7fbd1 0%, #eef2d8 55%, #e8e9d6 100%)",
-            peach: "radial-gradient(120% 120% at 30% 20%, #fff6e8 0%, #fae1d0 55%, #f5ddd0 100%)",
-            "blood-orange": "radial-gradient(120% 120% at 30% 20%, #fff0e6 0%, #ffd6c2 45%, #ffb79a 100%)",
-            agave: "radial-gradient(120% 120% at 30% 20%, #f0f7f0 0%, #dce9dd 55%, #d9e8dd 100%)",
-          };
-          const isBlood = product.id === "blood-orange";
           return (
             <article
               key={product.id}
-              className={`group relative flex h-full flex-col overflow-hidden rounded-[22px] border bg-white transition-all duration-300 hover:z-10 hover:shadow-[0_18px_40px_rgba(0,0,0,0.10)] ${isBlood ? "border-black/10" : "border-black/10"}`}
+              className="group relative flex h-full flex-col overflow-hidden rounded-[22px] border border-black/10 bg-white transition-all duration-300 hover:z-10 hover:shadow-[0_18px_40px_rgba(0,0,0,0.10)]"
             >
               <Link href={`/shop/${product.id}`} className="absolute inset-0 z-10" aria-label={`View ${product.name} — ${product.flavour}`} />
-              <div className="relative aspect-[4/3.3] overflow-hidden p-6 sm:p-7" style={{ background: bg[product.id] || "#f5f0e8" }}>
-                <div className="absolute left-4 top-4 flex items-center gap-2">
-                  <span className="rounded-full bg-white/90 px-2.5 py-1 text-[8px] tracking-[0.14em] text-black/70 backdrop-blur border border-black/5">0{index + 1} • {product.abv}</span>
-                  {isBlood && <span className="rounded-full bg-[#ff4d1a] px-2.5 py-1 text-[8px] font-medium tracking-[0.14em] text-white">BOLD</span>}
+              <div className="relative aspect-[4/3.3] overflow-hidden bg-[#f5f0e8] p-6 sm:p-7">
+                <div className="absolute left-4 top-4">
+                  <span className="rounded-full bg-white px-2.5 py-1 text-[8px] tracking-[0.14em] text-black/70 border border-black/5">0{index + 1} • {product.abv}</span>
                 </div>
                 <Image
                   src={product.src}
                   alt={`${product.name} — ${product.flavour}. ${product.description}`}
                   width={300}
                   height={420}
-                  className="can-shadow absolute left-1/2 top-1/2 h-[62%] w-auto -translate-x-1/2 -translate-y-[44%] object-contain transition-transform duration-700 ease-out group-hover:scale-[1.06] group-hover:-rotate-[1deg]"
+                  sizes="(min-width:1280px) 280px, (min-width:768px) 33vw, 50vw"
+                  className="can-shadow absolute left-1/2 top-1/2 h-[62%] w-auto -translate-x-1/2 -translate-y-[44%] object-contain transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                 />
                 <span className="absolute bottom-4 left-4 rounded-full bg-black px-2.5 py-1 text-[8px] tracking-[0.12em] text-white/90">{product.kcal}</span>
                 <span className="absolute bottom-4 right-4 hidden h-7 w-7 place-items-center rounded-full bg-white/90 text-black backdrop-blur border border-black/10 group-hover:grid">↗</span>
